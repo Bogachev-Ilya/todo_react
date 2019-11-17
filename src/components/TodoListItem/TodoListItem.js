@@ -2,29 +2,9 @@ import React, {Component} from 'react';
 import './TodoListItem.css';
 
 export default class TodoListItem extends Component {
-    state={
-        done:false,
-        important:false
-    }
-
-    onLabelClick = () =>
-        this.setState(({done})=>{
-            return{
-                done:!done
-            }
-        }
-    );
-
-    onThumbTack = () =>
-        this.setState(({important}) =>{
-            return{
-                important: !important
-            }
-        })
-
     render(){
-       const {label} = this.props;
-       const {done, important} = this.state;
+        //event listeners got from props
+       const {label, onDeleted, onToggleImportant, onToggleDone, important, done} = this.props;
        let classNames = 'todo-list-item';
 
        if(done){
@@ -35,14 +15,15 @@ export default class TodoListItem extends Component {
        }
         return(<span className={classNames}>
             <span className="todo-list-item-label"
-                  onClick={this.onLabelClick}>
+                  onClick={onToggleDone}>
                 {label}
             </span>
             <button type="button" className="btn btn-outline-success btn-sm float-right"
-                    onClick={this.onThumbTack}>
+                    onClick={onToggleImportant}>
                 <i className="fa fa-thumb-tack" aria-hidden="true"/>
             </button>
-             <button type="button" className="btn btn-outline-danger btn-sm float-right">
+             <button type="button" className="btn btn-outline-danger btn-sm float-right"
+                    onClick={onDeleted}>
                 <i className="fa fa-recycle" aria-hidden="true"/>
             </button>
         </span>
