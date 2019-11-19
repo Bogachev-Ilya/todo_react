@@ -8,13 +8,13 @@ export default class ItemStatusFilter extends Component {
 
     buttons=[{name:'all', label:'All'}, {name:'active', label:'Active'}, {name:'done', label:'Complete'}]
 
-    onClick=(state)=>{}
-
     render() {
+        //get function from App
         const {todoState, todoStateChange} = this.props;
         const buttons = this.buttons.map(({name, label})=>{
             //if todoState from props equals to btn name than active
             const isActive = todoState ===name;
+            //choose class for button
             const classButton = isActive?'btn-info':'btn btn-outline-secondary';
             return (
                 <button type="button" className={`btn ${classButton}`}
