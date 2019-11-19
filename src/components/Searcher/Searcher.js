@@ -7,9 +7,8 @@ export default class Searcher extends Component {
     };
 
     onChange=(e)=>{
-        this.setState({
-              label: e.target.value
-        })
+        const label = e.target.value.toLowerCase();
+        this.setState({label})
         this.props.onSearch(this.state.label)
     }
 
