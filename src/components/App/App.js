@@ -67,7 +67,17 @@ export default class App extends Component {
                 todoData: this.toggleProps(todoData, id, 'done')
             }
         })
+    };
+    //sort array by search label
+    searchTodoItem = (label) =>{
+        this.setState(({todoData})=>{
+            const newTodoList =[...this.state.todoData];
+            return{
+                todoData: newTodoList.filter((el)=>el.label===label)
+            }
+        })
     }
+
 
     render() {
 
@@ -79,7 +89,7 @@ export default class App extends Component {
         return(<div className="todo-app">
             <AppHeader toDo={todoCount} done={doneCount}/>
             <div className="top-panel d-flex">
-                <Searcher />
+                <Searcher onSearch={this.searchTodoItem}/>
                 <ItemStatusFilter />
             </div>
             <TodoList todos = {todoData}

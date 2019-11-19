@@ -1,8 +1,22 @@
-import React from "react";
+import React, {Component} from "react";
 import './Searcher.css';
 
-const Searcher = () => {
-    return(<input className="search-input" placeholder="search"/>)
-}
+export default class Searcher extends Component {
+    state={
+        label:''
+    };
 
-export default Searcher;
+    onChange=(e)=>{
+        this.setState({
+              label: e.target.value
+        })
+        this.props.onSearch(this.state.label)
+    }
+
+    render(){
+        return(
+            <div>
+                <input className="search-input" placeholder="search" onChange={this.onChange}  value={this.state.label}/>
+            </div>)
+    }
+}
